@@ -1,0 +1,12 @@
+#box {
+    display: inline-block;
+    border-radius: 10px;
+    margin: 6px;
+    padding: 8px;
+    border: 2px;
+    background-color: #9EEBCF;
+}
+
+a, a:visited {
+    color: black;
+}

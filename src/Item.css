@@ -1,0 +1,44 @@
+.item {
+    display: block;
+    border-radius: 10px;
+    margin: 6px;
+    padding: 10px;
+    border: 2px;
+    background-color: #9EEBCF;
+    overflow: auto;
+}
+
+img {
+    min-height: max-content;
+}
+
+.quantity {
+    margin: 5px;
+     
+}
+
+#cart {
+    padding: 10px;
+    background-color: whitesmoke;
+    transition: transform .2s; /* Animation */
+    margin: 10px auto;
+    border-radius: 10px;
+    float: right;
+    cursor: pointer;
+}
+
+#cart :hover {
+    transform: scale(1.5);
+}
+
+.item > div {
+    padding: 5px;
+}
+
+.item > button {
+    margin-top: 10px;
+}
+
+.item > a {
+    float :right;
+}
