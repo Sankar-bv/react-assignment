@@ -94,8 +94,8 @@ const Item = (props) => {
             <input style={{margin: '5px'}} id ='quantity' type="number" defaultValue="1" min="1" max="20" onChange={()=>{total(); errorMessage(); buttonDisable();}} onBlur={defaultNumber}></input>
             <button onClick={()=>{increment(); total();}}>+</button>
             <div className='errormessage'>Allowed quantity upto 20</div>
-            <div>Price : RS {editedresponse.price}</div>
-            <div >Total Price : RS {amount()}</div>
+            <div>Price : Rs {editedresponse.price}</div>
+            <div >Total Price : Rs {amount()}</div>
             <br/>
             <Link to={`/${props.itemdata.link}/purchase`}>
                 <button id='cart' disabled={buttonStatus()} onClick={quantity}>Add To Cart</button>

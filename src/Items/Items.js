@@ -53,6 +53,7 @@ const Items = (props) => {
                 <img style={{ height: '200px', width: '200px' }} src={item.imageURL} alt='noImage' />
                 <div>{props.user.name}</div>
                 <div>{stock()}</div>
+                <div>Rs {props.user.price}</div>
             </div>
         </Link>
     )

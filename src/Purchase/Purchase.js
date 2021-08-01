@@ -23,7 +23,7 @@ const Purchase = (props) => {
         <h2>Order Review</h2>
         <img src={props.imageURL} alt={`Noimage available for ${name}`} />
         <div>Name : {name}</div>
-        <div>Price : {props.amount}</div>
+        <div>Price : Rs {props.amount}</div>
         <div>Quantity : {quantity}</div>
         <div>Category : {category}</div>
         <Button id='buy' onClick={()=>{openBox(); buttontatus();}} disabled={disable}>{buttonText.current}</Button>
