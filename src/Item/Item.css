@@ -42,3 +42,8 @@ img {
 .item > a {
     float :right;
 }
+
+.errormessage {
+    color: red;
+    display: none;
+}

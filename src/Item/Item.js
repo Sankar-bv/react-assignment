@@ -34,17 +34,28 @@ const Item = (props) => {
             element.value = parseInt(element.value)-1;
     }
 
-    const 
-    buttonStatus = () => {
+    const buttonStatus = () => {
         if(stockValue === 'Outofstock')
             return true;
     }
 
+    const buttonDisable = () => {
+        if (document.getElementById('quantity').value > 20 || stockValue === 'Outofstock')
+            document.getElementById('cart').setAttribute('disabled', 'disabled');
+        else
+            document.getElementById('cart').removeAttribute('disabled');
+    }
+
+    const errorMessage = () => {
+        if (document.getElementById('quantity').value <= 20)
+            document.querySelector("div.errormessage").style.display = "none";
+        else
+            document.querySelector("div.errormessage").style.display = "revert"
+    }
+
     const quantity = () => {
-        //editedresponse = JSON.parse(editedresponse);
         editedresponse.quantity = document.getElementById('quantity').value;
         console.log(editedresponse);
-        //editedresponse = JSON.stringify(editedresponse)
         props.addedQuantity(editedresponse);
     }
 
@@ -52,6 +63,14 @@ const Item = (props) => {
         console.log(document.getElementById('quantity').value);
         setTotalAmount(editedresponse.price*document.getElementById('quantity').value);
         console.log(totalAmount);
+    }
+
+    const defaultNumber = () => {
+        let inputValue = document.getElementById('quantity').value;
+        if (inputValue === '' || inputValue === '0') {
+            document.getElementById('quantity').value = 1;
+            setTotalAmount(editedresponse.price);
+        }
     }
 
     const amount = () => {
@@ -72,9 +91,11 @@ const Item = (props) => {
             <div>{stockValue}</div>
             <button onClick={()=>{decrement(); total();}}>-</button>
             {/* <span id='quantity'>1</span> */}
-            <input style={{margin: '5px'}} id ='quantity' type="number" defaultValue="1" min="1" max="20" onChange={total}></input>
+            <input style={{margin: '5px'}} id ='quantity' type="number" defaultValue="1" min="1" max="20" onChange={()=>{total(); errorMessage(); buttonDisable();}} onBlur={defaultNumber}></input>
             <button onClick={()=>{increment(); total();}}>+</button>
-            <div >Total : {amount()}</div>
+            <div className='errormessage'>Allowed quantity upto 20</div>
+            <div>Price : RS {editedresponse.price}</div>
+            <div >Total Price : RS {amount()}</div>
             <br/>
             <Link to={`/${props.itemdata.link}/purchase`}>
                 <button id='cart' disabled={buttonStatus()} onClick={quantity}>Add To Cart</button>

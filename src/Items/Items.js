@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import Images from './Image.json'
+import Images from '../Image.json'
 import './Items.css';
 
 const Items = (props) => {
@@ -35,7 +35,7 @@ const Items = (props) => {
 
     const click = () => {
         console.log(item);
-        props.data(item);
+        props.item(item);
     }
 
     const item = URL();

@@ -1,3 +1,12 @@
 .App {
   text-align: center;
 }
+
+.noItem {
+  font-size: xx-large;
+  font-family: auto;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: skyblue;
+  display: inline-block;
+}

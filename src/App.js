@@ -1,24 +1,21 @@
 import { useEffect, useState } from 'react';
-import Jsondata from './json input.json';
+import Jsondata from './input.json';
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom"
 import './App.css';
-import Items from './Items';
-import Item from './Item';
-import Purchase from './Purchase';
+import Items from './Items/Items';
+import Item from './Item/Item';
+import Purchase from './Purchase/Purchase';
 
 function App() {
-  const [response, setResponse] = useState([]);
+  const response = Jsondata;
   const [itemdata, setItemData] = useState({});
   const [quantity, setQuantity] = useState([]);
   const [totalAmount, setTotalAmount] = useState(null);
   const [filteredResponse, setFilteredResponse] = useState([]);
-  const [searchField, setSearchField] = useState();
 
   useEffect(() => {
-    setResponse(Jsondata);
+    //setResponse(Jsondata);
     setFilteredResponse(Jsondata);
-    //setResponseChange(Jsondata);
-    //console.log(Jsondata);
   }, [])
 
   const item = (data) => {
@@ -30,10 +27,10 @@ function App() {
   const iterate = () => {
     if (filteredResponse.length > 0)
       return filteredResponse.map((user, i) => {
-        return <Items key={i} user={user} data={item} />
+        return <Items key={i} user={user} item={item} />
       })
     else
-      return <div>No Items Available</div>
+      return <div className='noItem'>No Items Available</div>
   }
 
   const addedQuantity = (data) => {
@@ -46,24 +43,10 @@ function App() {
 
   const search = (event) => {
     var input = event.target.value;
-    // responseChange = response.filter(user => {
-    //   // if(user.name.includes(input))
-    //     return user.name.includes(input);
-    // })
     setFilteredResponse(response.filter(user => {
       return user.name.toLowerCase().includes(input.toLowerCase());
     }));
     console.log(filteredResponse);
-    //   for (var i=0; i < myArray.length; i++) {
-    //     if (myArray[i].name === nameKey) {
-    //       console.log(nameKey);
-    //         return myArray[i];
-    //     }
-    // }
-  }
-
-  const load = () => {
-    setFilteredResponse(response);
   }
 
   return (
@@ -74,9 +57,7 @@ function App() {
             <input style={{ margin: '20px 0px 20px 0px' }} type="text" placeholder="Item" onChange={search}></input>
             <br />
             {iterate()}
-            {/* <div>{JSON.stringify(response)}</div> */}
-            {/* <div>{JSON.stringify(itemdata)}</div> */}
-          </div>} />
+            </div>} />
         <Route exact path="/:id" render={() =>
           <div>
             <Item itemdata={itemdata} response={filteredResponse} addedQuantity={addedQuantity} amount={amount} />
@@ -87,11 +68,7 @@ function App() {
         } />
       </Switch>
     </Router>
-    // <div className="App">
-    //   {iterate}
-    //   <div>{JSON.stringify(response)}</div>
-    //   <div>{JSON.stringify(itemdata)}</div>
-    //</div>
+
   );
 }
 
